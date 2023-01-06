@@ -7,19 +7,13 @@ type TreeNode struct {
 }
 
 func sortedArrayToBST(nums []int) *TreeNode {
-	return travel(nums, 0, len(nums)-1)
-}
-
-func travel(nums []int, lo, hi int) *TreeNode {
-	if lo > hi {
+	if len(nums) == 0 {
 		return nil
 	}
-
-	mid := lo + (hi-lo)/2
-
+	mid := len(nums) / 2
 	return &TreeNode{
 		Val:   nums[mid],
-		Left:  travel(nums, lo, mid-1),
-		Right: travel(nums, mid+1, hi),
+		Left:  sortedArrayToBST(nums[:mid]),
+		Right: sortedArrayToBST(nums[mid+1:]),
 	}
 }
