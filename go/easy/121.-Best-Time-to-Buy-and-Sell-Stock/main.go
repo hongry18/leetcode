@@ -8,11 +8,9 @@ func maxProfit(prices []int) int {
 			lo = cur
 			continue
 		}
-
 		if cur-lo > price {
 			price = cur - lo
 		}
-
 	}
 
 	return price
