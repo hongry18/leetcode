@@ -6,10 +6,6 @@ func singleNumber(nums []int) int {
 		res ^= v
 	}
 	return res
-	if len(nums) < 2 {
-		return nums[0]
-	}
-
 	m := make(map[int]int)
 	for _, num := range nums {
 		m[num]++
