@@ -1,14 +1,12 @@
 package main
 
-import "fmt"
-
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
 }
 
-func preorderTraversal(root *TreeNode) []int {
+func postorderTraversal(root *TreeNode) []int {
 	var res []int
 	if root == nil {
 		return res
@@ -17,18 +15,19 @@ func preorderTraversal(root *TreeNode) []int {
 	// travel(root, &res)
 	// return res
 
-	ar := []*TreeNode{root}
+	ar := []*TreeNode{}
+	cur := root
 
-	for len(ar) != 0 {
-		n := ar[len(ar)-1]
-		ar = ar[:len(ar)-1]
-
-		if n == nil {
-			continue
+	for cur != nil || len(ar) != 0 {
+		if cur == nil {
+			n := ar[len(ar)-1]
+			ar = ar[:len(ar)-1]
+			cur = n.Left
+		} else {
+			ar = append(ar, cur)
+			res = append([]int{cur.Val}, res...)
+			cur = cur.Right
 		}
-
-		res = append(res, n.Val)
-		ar = append(ar, n.Right, n.Left)
 	}
 
 	return res
@@ -39,8 +38,7 @@ func travel(root *TreeNode, ans *[]int) {
 		return
 	}
 
-	*ans = append(*ans, root.Val)
 	travel(root.Left, ans)
 	travel(root.Right, ans)
-	fmt.Println(root.Val)
+	*ans = append(*ans, root.Val)
 }
