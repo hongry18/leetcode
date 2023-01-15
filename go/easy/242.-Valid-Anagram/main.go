@@ -5,16 +5,18 @@ func isAnagram(s string, t string) bool {
 		return false
 	}
 
-	m := map[byte]int{}
-	for i := 0; i < len(s); i++ {
-		m[s[i]]++
-		m[t[i]]--
+	ar := make([]int, 26)
+
+	for _, v := range s {
+		ar[v-'a']++
 	}
 
-	for _, v := range m {
-		if v != 0 {
+	for _, v := range t {
+		ar[v-'a']--
+		if ar[v-'a'] < 0 {
 			return false
 		}
 	}
+
 	return true
 }
