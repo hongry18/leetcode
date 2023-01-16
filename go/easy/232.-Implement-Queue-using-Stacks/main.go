@@ -14,29 +14,31 @@ func (this *MyQueue) Push(x int) {
 }
 
 func (this *MyQueue) Pop() int {
-	for !this.S1.Empty() {
-		this.S2.Push(this.S1.Pop())
+	var x int
+	if this.S2.Empty() {
+		for !this.S1.Empty() {
+			x = this.S1.Pop()
+			this.S2.Push(x)
+		}
 	}
-	x := this.S2.Pop()
-	for !this.S2.Empty() {
-		this.S1.Push(this.S2.Pop())
-	}
+	x = this.S2.Pop()
 	return x
 }
 
 func (this *MyQueue) Peek() int {
-	for !this.S1.Empty() {
-		this.S2.Push(this.S1.Pop())
+	var x int
+	if this.S2.Empty() {
+		for !this.S1.Empty() {
+			x = this.S1.Pop()
+			this.S2.Push(x)
+		}
 	}
-	x := this.S2.Top()
-	for !this.S2.Empty() {
-		this.S1.Push(this.S2.Pop())
-	}
+	x = this.S2.Top()
 	return x
 }
 
 func (this *MyQueue) Empty() bool {
-	return this.S1.Empty()
+	return this.S1.Empty() && this.S2.Empty()
 }
 
 type MyStack struct {

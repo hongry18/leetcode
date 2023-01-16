@@ -9,5 +9,9 @@ func TestXxx(t *testing.T) {
 		q.Push(2)
 		t.Log(q.Peek())
 		t.Log(q.Pop())
+		q.Push(3)
+		t.Log(q.Pop())
+		t.Log(q.Pop())
+		t.Log(q.Empty())
 	})
 }
