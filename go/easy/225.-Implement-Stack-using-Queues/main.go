@@ -1,7 +1,8 @@
 package main
 
 type MyStack struct {
-	ar []int
+	ar  []int
+	pos int
 }
 
 func Constructor() MyStack {
@@ -9,6 +10,8 @@ func Constructor() MyStack {
 }
 
 func (this *MyStack) Push(x int) {
+	this.ar = append(this.ar, x)
+	this.pos++
 }
 
 func (this *MyStack) Pop() int {
