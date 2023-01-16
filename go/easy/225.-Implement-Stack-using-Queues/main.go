@@ -6,7 +6,7 @@ type MyStack struct {
 }
 
 func Constructor() MyStack {
-	return MyStack{}
+	return MyStack{pos: -1}
 }
 
 func (this *MyStack) Push(x int) {
@@ -15,15 +15,24 @@ func (this *MyStack) Push(x int) {
 }
 
 func (this *MyStack) Pop() int {
-	return 0
+	if this.Empty() {
+		return 0
+	}
+	p := this.ar[this.pos]
+	this.ar = this.ar[:this.pos]
+	this.pos--
+	return p
 }
 
 func (this *MyStack) Top() int {
-	return 0
+	if this.Empty() {
+		return 0
+	}
+	return this.ar[this.pos]
 }
 
 func (this *MyStack) Empty() bool {
-	return false
+	return this.pos == -1
 }
 
 /**
