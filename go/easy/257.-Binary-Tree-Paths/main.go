@@ -2,6 +2,7 @@ package main
 
 import (
 	"strconv"
+	"strings"
 )
 
 type TreeNode struct {
@@ -10,32 +11,38 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+type NodePath struct {
+	Node *TreeNode
+	Path []int
+}
+
 func binaryTreePaths(root *TreeNode) []string {
-	ar := []*TreeNode{root}
+	var res []string
+	ar := []NodePath{{Node: root}}
 
-	if root.Left == nil && root.Right == nil {
-		return []string{strconv.Itoa(root.Val)}
-	}
-
+	var sb strings.Builder
 	for len(ar) != 0 {
 		n := ar[len(ar)-1]
 		ar = ar[:len(ar)-1]
-		if n == nil {
-			continue
+
+		if n.Node.Left == nil && n.Node.Right == nil {
+			for _, v := range n.Path {
+				sb.WriteString(strconv.Itoa(v))
+				sb.WriteString("->")
+			}
+			sb.WriteString(strconv.Itoa(n.Node.Val))
+			res = append(res, sb.String())
+			sb.Reset()
 		}
 
-		if n.Left == nil && n.Right == nil {
-			// 처리
+		if n.Node.Right != nil {
+			ar = append(ar, NodePath{Node: n.Node.Right, Path: append(n.Path, n.Node.Val)})
 		}
 
-		if n.Left != nil {
-			ar = append(ar, n.Left)
-		}
-
-		if n.Right != nil {
-			ar = append(ar, n.Right)
+		if n.Node.Left != nil {
+			ar = append(ar, NodePath{Node: n.Node.Left, Path: append(n.Path, n.Node.Val)})
 		}
 	}
 
-	return []string{}
+	return res
 }
