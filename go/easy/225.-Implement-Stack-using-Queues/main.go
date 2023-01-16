@@ -1,26 +1,23 @@
 package main
 
 type MyStack struct {
-	ar  []int
-	pos int
+	ar []int
 }
 
 func Constructor() MyStack {
-	return MyStack{pos: -1}
+	return MyStack{}
 }
 
 func (this *MyStack) Push(x int) {
 	this.ar = append(this.ar, x)
-	this.pos++
 }
 
 func (this *MyStack) Pop() int {
 	if this.Empty() {
 		return 0
 	}
-	p := this.ar[this.pos]
-	this.ar = this.ar[:this.pos]
-	this.pos--
+	p := this.ar[len(this.ar)-1]
+	this.ar = this.ar[:len(this.ar)-1]
 	return p
 }
 
@@ -28,11 +25,11 @@ func (this *MyStack) Top() int {
 	if this.Empty() {
 		return 0
 	}
-	return this.ar[this.pos]
+	return this.ar[len(this.ar)-1]
 }
 
 func (this *MyStack) Empty() bool {
-	return this.pos == -1
+	return len(this.ar) == 0
 }
 
 /**
