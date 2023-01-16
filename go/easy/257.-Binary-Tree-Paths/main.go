@@ -16,6 +16,21 @@ type NodePath struct {
 	Path []int
 }
 
+func dfs(root *TreeNode, s string) []string {
+	if root == nil {
+		return []string{}
+	}
+
+	if root.Left == nil && root.Right == nil {
+		return []string{s + strconv.Itoa(root.Val)}
+	}
+
+	return append(
+		dfs(root.Left, s+strconv.Itoa(root.Val)+"->"),
+		dfs(root.Right, s+strconv.Itoa(root.Val)+"->")...,
+	)
+}
+
 func binaryTreePaths(root *TreeNode) []string {
 	var res []string
 	ar := []NodePath{{Node: root}}
