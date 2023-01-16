@@ -12,8 +12,7 @@ func TestXxx(t *testing.T) {
 		s := Constructor()
 		s.Push(x)
 
-		assert.Equal(t, s.ar[0], x)
-		// assert.Equal(t, s.pos, 0)
+		assert.Equal(t, s.Q.Data[0], x)
 	})
 
 	t.Run("push pop", func(t *testing.T) {
@@ -22,7 +21,6 @@ func TestXxx(t *testing.T) {
 		s.Push(x)
 		p := s.Pop()
 
-		t.Log(s.ar)
 		assert.Equal(t, p, x)
 		// assert.Equal(t, s.pos, -1)
 	})

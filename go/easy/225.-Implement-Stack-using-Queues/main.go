@@ -1,7 +1,7 @@
 package main
 
 type MyStack struct {
-	ar []int
+	Q MyQueue
 }
 
 func Constructor() MyStack {
@@ -9,27 +9,61 @@ func Constructor() MyStack {
 }
 
 func (this *MyStack) Push(x int) {
-	this.ar = append(this.ar, x)
+	this.Q.Push(x)
 }
 
 func (this *MyStack) Pop() int {
-	if this.Empty() {
-		return 0
+	for i := 0; i < this.Q.Size()-1; i++ {
+		this.Q.Push(this.Q.Pop())
 	}
-	p := this.ar[len(this.ar)-1]
-	this.ar = this.ar[:len(this.ar)-1]
-	return p
+	return this.Q.Pop()
 }
 
 func (this *MyStack) Top() int {
-	if this.Empty() {
-		return 0
+	for i := 0; i < this.Q.Size()-1; i++ {
+		this.Q.Push(this.Q.Pop())
 	}
-	return this.ar[len(this.ar)-1]
+	x := this.Q.Pop()
+	this.Q.Push(x)
+	return x
 }
 
 func (this *MyStack) Empty() bool {
-	return len(this.ar) == 0
+	return this.Q.Empty()
+}
+
+type MyQueue struct {
+	Data []int
+}
+
+func (q *MyQueue) Push(x int) {
+	q.Data = append(q.Data, x)
+}
+
+func (q *MyQueue) Peek() int {
+	if q.Empty() {
+		return 0
+	}
+
+	return q.Data[0]
+}
+
+func (q *MyQueue) Pop() int {
+	if q.Empty() {
+		return 0
+	}
+
+	t := q.Data[0]
+	q.Data = q.Data[1:]
+	return t
+}
+
+func (q *MyQueue) Size() int {
+	return len(q.Data)
+}
+
+func (q *MyQueue) Empty() bool {
+	return q.Size() == 0
 }
 
 /**
