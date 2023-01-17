@@ -3,15 +3,12 @@ package main
 func moveZeroes(nums []int) {
 	var i int
 
-	for _, n := range nums {
-		if n != 0 {
-			nums[i] = n
+	for j := 0; j < len(nums); j++ {
+		if nums[j] != 0 {
+			nums[i], nums[j] = nums[j], nums[i]
+		}
+		if nums[i] != 0 {
 			i++
 		}
-	}
-
-	for i < len(nums) {
-		nums[i] = 0
-		i++
 	}
 }
