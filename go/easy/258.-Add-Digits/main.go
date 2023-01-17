@@ -5,19 +5,11 @@ func addDigits(num int) int {
 		return num
 	}
 
-	for {
-		var x int
-		for num > 0 {
-			x += num % 10
-			num /= 10
-		}
-
-		num = x
-		if num < 10 {
-			break
-		}
-		x = 0
+	var sum int
+	for num > 0 {
+		sum += num % 10
+		num /= 10
 	}
 
-	return num
+	return addDigits(sum)
 }
