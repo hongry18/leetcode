@@ -7,10 +7,8 @@ func countBits(n int) []int {
 		j := i
 		cnt := 0
 		for j > 0 {
-			if j&1 == 1 {
-				cnt++
-			}
-			j >>= 1
+			j &= j - 1
+			cnt++
 		}
 		res = append(res, cnt)
 	}
