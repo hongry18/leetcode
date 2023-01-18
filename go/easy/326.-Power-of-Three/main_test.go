@@ -15,4 +15,8 @@ func TestXxx(t *testing.T) {
 		assert.Equal(t, isPowerOfThree(0), false)
 		assert.Equal(t, isPowerOfThree(-1), false)
 	})
+
+	t.Run("test2", func(t *testing.T) {
+		assert.Equal(t, isPowerOfThree(21), false)
+	})
 }
