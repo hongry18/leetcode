@@ -1,30 +1,27 @@
 package main
 
-import (
-	"sort"
-)
-
 func intersection(nums1 []int, nums2 []int) []int {
 	var res []int
-
-	if len(nums1) > len(nums2) {
-		nums1, nums2 = nums2, nums1
-	}
-
-	m := make(map[int]bool)
-	for i := 0; i < len(nums1); i++ {
-		if m[nums1[i]] {
+	find := make([]int, 1001)
+	for _, n := range nums1 {
+		if find[n] > 0 {
 			continue
 		}
-		for j := 0; j < len(nums2); j++ {
-			if nums1[i] == nums2[j] {
-				res = append(res, nums1[i])
-				break
-			}
-		}
-		m[nums1[i]] = true
+		find[n]++
 	}
 
-	sort.Ints(res)
+	for _, n := range nums2 {
+		if find[n] < 1 {
+			continue
+		}
+		find[n]++
+	}
+
+	for i := 0; i < 1001; i++ {
+		if find[i] > 1 {
+			res = append(res, i)
+		}
+	}
+
 	return res
 }
