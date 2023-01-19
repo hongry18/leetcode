@@ -1,26 +1,18 @@
 package main
 
 func intersection(nums1 []int, nums2 []int) []int {
-	var res []int
-	find := make([]int, 1001)
+	var res = []int{}
+	var find = map[int]bool{}
 	for _, n := range nums1 {
-		if find[n] > 0 {
-			continue
-		}
-		find[n]++
+		find[n] = true
 	}
 
 	for _, n := range nums2 {
-		if find[n] < 1 {
+		if !find[n] {
 			continue
 		}
-		find[n]++
-	}
-
-	for i := 0; i < 1001; i++ {
-		if find[i] > 1 {
-			res = append(res, i)
-		}
+		res = append(res, n)
+		find[n] = false
 	}
 
 	return res
