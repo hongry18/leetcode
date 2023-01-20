@@ -7,10 +7,9 @@ func firstUniqChar(s string) int {
 	}
 
 	for i := range s {
-		if m[s[i]] > 1 {
-			continue
+		if m[s[i]] < 2 {
+			return i
 		}
-		return i
 	}
 	return -1
 }
