@@ -1,16 +1,12 @@
 package main
 
 func findTheDifference(s string, t string) byte {
-	var ar = make([]int, 26)
+	var res int
 	for i := range s {
-		ar[s[i]-'a']++
+		res ^= int(s[i])
 	}
-
 	for i := range t {
-		ar[t[i]-'a']--
-		if ar[t[i]-'a'] == -1 {
-			return t[i]
-		}
+		res ^= int(t[i])
 	}
-	return 0
+	return byte(res)
 }
