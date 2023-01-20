@@ -15,11 +15,11 @@ func mySqrt(x int) int {
 		}
 
 		if mid < x/mid {
-			lo = mid - 1
+			lo = mid + 1
 		} else {
-			hi = mid + 1
+			hi = mid - 1
 		}
 	}
 
-	return hi
+	return lo
 }

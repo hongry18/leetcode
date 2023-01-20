@@ -7,5 +7,5 @@ import (
 )
 
 func TestXxx(t *testing.T) {
-	assert.Equal(t, mySqrt(2), 1)
+	assert.Equal(t, mySqrt(8), 2)
 }
