@@ -1,22 +1,18 @@
 package main
 
 func canConstruct(ransomNote string, magazine string) bool {
-	if ransomNote == magazine {
-		return true
+	ar := [26]int{}
+
+	for _, b := range magazine {
+		ar[b-'a']++
 	}
 
-	var cnt int
-	ar := make([]bool, len(ransomNote))
-
-	for _, mc := range magazine {
-		for j, rc := range ransomNote {
-			if mc == rc && !ar[j] {
-				ar[j] = true
-				cnt++
-				break
-			}
+	for _, b := range ransomNote {
+		if ar[b-'a'] == 0 {
+			return false
 		}
+		ar[b-'a']--
 	}
 
-	return len(ar) == cnt
+	return true
 }

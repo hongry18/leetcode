@@ -12,7 +12,6 @@ func TestXxx(t *testing.T) {
 		assert.Equal(t, canConstruct("aa", "aab"), true)
 		assert.Equal(t, canConstruct("a", "b"), false)
 		assert.Equal(t, canConstruct("aa", "ab"), false)
-		assert.Equal(t, canConstruct("aacbabca", "abaacba"), true)
 	})
 
 	t.Run("test2", func(t *testing.T) {
