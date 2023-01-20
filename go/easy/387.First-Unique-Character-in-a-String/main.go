@@ -1,13 +1,13 @@
 package main
 
 func firstUniqChar(s string) int {
-	m := map[byte]int{}
+	var ar = make([]int, 26)
 	for i := range s {
-		m[s[i]]++
+		ar[s[i]-'a']++
 	}
 
 	for i := range s {
-		if m[s[i]] < 2 {
+		if ar[s[i]-'a'] == 1 {
 			return i
 		}
 	}
