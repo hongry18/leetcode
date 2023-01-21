@@ -3,7 +3,7 @@ package main
 func longestPalindrome(s string) int {
 	var res int
 	var center bool
-	var ar = [26]int{}
+	var ar = [52]int{}
 	for _, v := range s {
 		if v >= 'a' {
 			ar[v-'a']++
