@@ -14,45 +14,39 @@ func addStrings(num1 string, num2 string) string {
 	}
 
 	var i, j int
-	var hasTen bool
 	var ar []byte
-	var b byte
+	var b, carry byte
 	for i, j = len(num1)-1, len(num2)-1; i >= 0 && j >= 0; i, j = i-1, j-1 {
-		b = num1[i] - '0' + num2[j] - '0'
-		if hasTen {
-			b++
-			hasTen = false
-		}
+		b = num1[i] - '0' + num2[j] - '0' + carry
 
 		if b > 9 {
 			b -= 10
-			hasTen = true
+			carry = 1
+		} else {
+			carry = 0
 		}
 
-		ar = append(ar, b)
+		ar = append(ar, b+'0')
 	}
 
 	for ; j >= 0; j-- {
-		b = num2[j] - '0'
-		if hasTen {
-			b++
-			hasTen = false
-		}
+		b = num2[j] - '0' + carry
 		if b > 9 {
 			b -= 10
-			hasTen = true
+			carry = 1
+		} else {
+			carry = 0
 		}
-		ar = append(ar, b)
+		ar = append(ar, b+'0')
 	}
 
-	if hasTen {
-		ar = append(ar, 1)
+	if carry > 0 {
+		ar = append(ar, '1')
 	}
 
-	var res []byte
-	for i := len(ar) - 1; i >= 0; i-- {
-		res = append(res, ar[i]+'0')
+	for i := 0; i < len(ar)/2; i++ {
+		ar[i], ar[len(ar)-1-i] = ar[len(ar)-1-i], ar[i]
 	}
 
-	return string(res)
+	return string(ar)
 }
