@@ -1,22 +1,16 @@
 package main
 
 func toHex(num int) string {
-	if num < 0 {
-		var tmp uint32
-		tmp += uint32(num)
-		num = int(tmp)
+	if num == 0 {
+		return "0"
 	}
 
-	var alpha = []byte{'a', 'b', 'c', 'd', 'e', 'f'}
+	var n uint32 = uint32(num)
+	var hex = "0123456789abcdef"
 	var res []byte
-	for num > 0 {
-		mod := num % 16
-		if mod < 10 {
-			res = append([]byte{byte(mod) + '0'}, res...)
-		} else {
-			res = append([]byte{alpha[mod-10]}, res...)
-		}
-		num /= 16
+	for n > 0 {
+		res = append([]byte{hex[n%16]}, res...)
+		n /= 16
 	}
 	return string(res)
 }

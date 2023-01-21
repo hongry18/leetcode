@@ -1,10 +1,14 @@
 package main
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestXxx(t *testing.T) {
 	t.Run("test1", func(t *testing.T) {
-		toHex(26)
-		toHex(-1)
+		assert.Equal(t, toHex(26), "1a")
+		assert.Equal(t, toHex(-1), "ffffffff")
 	})
 }
