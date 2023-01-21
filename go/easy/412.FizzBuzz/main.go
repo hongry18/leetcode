@@ -3,16 +3,17 @@ package main
 import "strconv"
 
 func fizzBuzz(n int) []string {
-	var res []string
-	for i := 1; i <= n; i++ {
-		if i%15 == 0 {
-			res = append(res, "FizzBuzz")
-		} else if i%5 == 0 {
-			res = append(res, "Buzz")
-		} else if i%3 == 0 {
-			res = append(res, "Fizz")
-		} else {
-			res = append(res, strconv.Itoa(i))
+	var res = make([]string, n)
+	for i := range res {
+		switch (i + 1) % 15 {
+		case 0:
+			res[i] = "FizzBuzz"
+		case 3, 6, 9, 12:
+			res[i] = "Fizz"
+		case 5, 10:
+			res[i] = "Buzz"
+		default:
+			res[i] = strconv.Itoa(i + 1)
 		}
 	}
 	return res
