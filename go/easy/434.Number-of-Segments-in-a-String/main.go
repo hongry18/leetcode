@@ -1,23 +1,23 @@
 package main
 
 func countSegments(s string) int {
-	var res []string
+	var res int
+	var isChar bool
 
-	var i int
-	for j := range s {
-		if s[i] == ' ' && s[j] != ' ' {
-			i = j
-		}
-
-		if s[i] != ' ' && s[j] == ' ' {
-			res = append(res, s[i:j])
-			i = j
-		}
-
-		if j == len(s)-1 && s[i] != ' ' && s[j] != ' ' {
-			res = append(res, s[i:j])
+	for _, c := range s {
+		if c == ' ' {
+			if isChar {
+				res++
+			}
+			isChar = false
+		} else {
+			isChar = true
 		}
 	}
 
-	return len(res)
+	if isChar {
+		res++
+	}
+
+	return res
 }
