@@ -1,15 +1,15 @@
 package main
 
 func arrangeCoins(n int) int {
-	var i int = 1
-	for n > i {
-		n -= i
-		i++
-	}
+	var i, j int = 0, n
 
-	if n == i {
-		return i
-	} else {
-		return i - 1
+	for i <= j {
+		m := i + (j-i)/2
+		if m*(m+1)/2 <= n {
+			i = m + 1
+		} else {
+			j = m - 1
+		}
 	}
+	return j
 }
