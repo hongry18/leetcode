@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func islandPerimeter(grid [][]int) int {
 	var cnt int
 
@@ -17,17 +15,19 @@ func islandPerimeter(grid [][]int) int {
 				el := ar[len(ar)-1]
 				ar = ar[:len(ar)-1]
 				x, y := el[1], el[0]
-				if x < 0 || x >= len(grid[0]) || y < 0 || y >= len(grid) || grid[y][x] == 0 {
-					fmt.Println(y, x)
-					cnt++
+				if x < 0 || x >= len(grid[0]) || y < 0 || y >= len(grid) || grid[y][x] == 0 || grid[y][x] == 2 {
 					continue
 				}
 
-				if grid[y][x] == -1 {
-					continue
+				cnt += 4
+				grid[y][x] = 2
+				if y > 0 && grid[y-1][x] > 0 {
+					cnt -= 2
 				}
 
-				grid[y][x] = -1
+				if x > 0 && grid[y][x-1] > 0 {
+					cnt -= 2
+				}
 
 				ar = append(ar,
 					[]int{y + 1, x},
