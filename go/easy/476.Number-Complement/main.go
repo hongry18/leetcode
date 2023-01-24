@@ -1,20 +1,12 @@
 package main
 
 func findComplement(num int) int {
-	var ar []int
-	var res, inc int = 0, 1
-	for num > 0 {
-		if num&1 == 0 {
-			ar = append(ar, 1)
-		} else {
-			ar = append(ar, 0)
-		}
-		num >>= 1
-	}
+	var sum, tmp = 1, num
 
-	for i := range ar {
-		res += (inc) * ar[i]
-		inc *= 2
+	for tmp > 1 {
+		sum <<= 1
+		sum += 1
+		tmp >>= 1
 	}
-	return res
+	return sum - num
 }
