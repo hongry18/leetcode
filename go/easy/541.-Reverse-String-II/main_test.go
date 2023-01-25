@@ -8,6 +8,6 @@ import (
 
 func TestXxx(t *testing.T) {
 	t.Run("test1", func(t *testing.T) {
-		assert.Equal(t, reverseStr("abcdefghi", 6), "fedcbaghi")
+		assert.Equal(t, reverseStr("abcdefghijklm", 5), "edcbafghijmlk")
 	})
 }
