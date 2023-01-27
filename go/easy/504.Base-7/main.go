@@ -1,6 +1,9 @@
 package main
 
 func convertToBase7(num int) string {
+	if num == 0 {
+		return "0"
+	}
 	var b []byte
 	var isNegative bool
 	if num < 0 {
