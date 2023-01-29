@@ -4,11 +4,11 @@ func checkPerfectNumber(num int) bool {
 	if num < 2 {
 		return false
 	}
-	var sum int = 1
-	for i := 2; i <= num/2; i++ {
+	var sum int
+	for i := 1; i*i <= num; i++ {
 		if num%i == 0 {
-			sum += i
+			sum += i + (num / i)
 		}
 	}
-	return num == sum
+	return sum-num == num
 }
