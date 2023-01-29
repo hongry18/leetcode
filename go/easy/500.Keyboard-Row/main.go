@@ -1,40 +1,30 @@
 package main
 
 func findWords(words []string) []string {
-	var chars = []string{"qwertyuiop", "asdfghjkl", "zxcvbnm"}
 	var res []string
-
 	for i := range words {
-		j := 0
-		m := true
-		for ; j < 3; j++ {
-			if contains(chars[j], words[i][0]) {
-				break
+		ar := [3]int{}
+		for j := range words[i] {
+			b := words[i][j]
+			if b >= 'A' && b <= 'Z' {
+				b += 'a' - 'A'
+			}
+
+			switch b {
+			case 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p':
+				ar[0]++
+			case 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l':
+				ar[1]++
+			case 'z', 'x', 'c', 'v', 'b', 'n', 'm':
+				ar[2]++
 			}
 		}
-		for k := 1; k < len(words[i]); k++ {
-			if !contains(chars[j], words[i][k]) {
-				m = false
-				break
+		for j := range ar {
+			if len(words[i]) == ar[j] {
+				res = append(res, words[i])
 			}
 		}
-		if !m {
-			continue
-		}
-		res = append(res, words[i])
 	}
 
 	return res
-}
-
-func contains(s string, b byte) bool {
-	if b >= 'A' && b <= 'Z' {
-		b = b - 'A' + 'a'
-	}
-	for i := range s {
-		if s[i] == b {
-			return true
-		}
-	}
-	return false
 }
