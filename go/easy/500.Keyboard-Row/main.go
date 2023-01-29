@@ -6,14 +6,9 @@ func findWords(words []string) []string {
 
 	for i := range words {
 		j := 0
-		b := words[i][0]
 		m := true
-		if b >= 'A' && b <= 'Z' {
-			b = b - 'A' + 'a'
-		}
-
 		for ; j < 3; j++ {
-			if contains(chars[j], b) {
+			if contains(chars[j], words[i][0]) {
 				break
 			}
 		}
@@ -33,6 +28,9 @@ func findWords(words []string) []string {
 }
 
 func contains(s string, b byte) bool {
+	if b >= 'A' && b <= 'Z' {
+		b = b - 'A' + 'a'
+	}
 	for i := range s {
 		if s[i] == b {
 			return true

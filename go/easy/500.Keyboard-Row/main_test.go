@@ -8,6 +8,6 @@ import (
 
 func TestXxx(t *testing.T) {
 	t.Run("test1", func(t *testing.T) {
-		assert.Equal(t, findWords([]string{"Hello", "Alaska", "Dad", "Peace"}), []string{"Alaska", "Dad"})
+		assert.Equal(t, findWords([]string{"Aasdfghjkl", "Qwertyuiop", "zZxcvbnm"}), []string{"Aasdfghjkl", "Qwertyuiop", "zZxcvbnm"})
 	})
 }
