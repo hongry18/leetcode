@@ -5,10 +5,11 @@ func checkPerfectNumber(num int) bool {
 		return false
 	}
 	var sum int
-	for i := 1; i*i <= num; i++ {
+	for i := 2; i*i <= num; i++ {
 		if num%i == 0 {
-			sum += i + (num / i)
+			sum += i + num/i
 		}
 	}
-	return sum-num == num
+	sum++
+	return sum == num
 }
