@@ -7,40 +7,19 @@ type TreeNode struct {
 }
 
 func findTilt(root *TreeNode) int {
-	if root == nil {
-		return 0
-	}
-
-	var sum int
-	var a = []*TreeNode{root}
-	for len(a) != 0 {
-		n := a[0]
-		a = a[1:]
-
-		var l, r = sum(n.Left), sum(n.Right)
-		sum = abs(l - r)
-	}
-	return 0
+	a := 0
+	dfs(root, &a)
+	return a
 }
 
-func sum(r *TreeNode) int {
-	if r == nil {
+func dfs(n *TreeNode, a *int) int {
+	if n == nil {
 		return 0
 	}
-	var s int
-	var a = []*TreeNode{r}
-	for len(a) != 0 {
-		n := a[0]
-		a = a[1:]
-		s += n.Val
-		if n.Left != nil {
-			a = append(a, n.Left)
-		}
-		if n.Right != nil {
-			a = append(a, n.Right)
-		}
-	}
-	return s
+	l := dfs(n.Left, a)
+	r := dfs(n.Right, a)
+	*a += abs(l - r)
+	return l + r + n.Val
 }
 
 func abs(a int) int {
