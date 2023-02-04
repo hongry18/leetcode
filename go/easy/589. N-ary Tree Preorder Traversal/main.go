@@ -13,14 +13,12 @@ func preorder(root *Node) []int {
 	var ar = []*Node{root}
 	var res []int
 	for len(ar) != 0 {
-		n := ar[0]
+		n := ar[len(ar)-1]
+		ar = ar[:len(ar)-1]
 		res = append(res, n.Val)
-		ar = ar[1:]
-		var t []*Node
-		for _, c := range n.Children {
-			t = append(t, c)
+		for i := len(n.Children) - 1; i >= 0; i-- {
+			ar = append(ar, n.Children[i])
 		}
-		ar = append(t, ar...)
 	}
 	return res
 }
