@@ -28,4 +28,14 @@ func getMinimumDifference(root *TreeNode) int {
 	}
 	sort.Ints(ar2)
 	var res int = 1000000
+	for i := 0; i < len(ar2)-1; i++ {
+		t := ar2[i+1] - ar2[i]
+		if t < res {
+			res = t
+		}
+		if t == 1 {
+			break
+		}
+	}
+	return res
 }
