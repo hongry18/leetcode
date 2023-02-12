@@ -1,25 +1,23 @@
 package main
 
 func matrixReshape(mat [][]int, r int, c int) [][]int {
-	m, n := len(mat), len(mat[0])
-	if m*n != r*c {
+	if len(mat)*len(mat[0]) != r*c {
 		return mat
 	}
 
-	var res = make([][]int, r)
-	for i := 0; i < r; i++ {
-		res[i] = make([]int, c)
-	}
+	var res [][]int
+	var p int
 
-	row, col := 0, 0
-	for i := 0; i < m; i++ {
-		for j := 0; j < n; j++ {
-			res[row][col] = mat[row][col]
-			col++
-			if col > c-1 {
-				row++
-				col = 0
+	for _, row := range mat {
+		for _, col := range row {
+
+			if p%c == 0 {
+				res = append(res, []int{col})
+			} else {
+				res[p/c] = append(res[p/c], col)
 			}
+
+			p++
 		}
 	}
 
