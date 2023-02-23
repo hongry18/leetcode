@@ -15,11 +15,8 @@ func findErrorNums(nums []int) []int {
 		ar[v-1]++
 		if ar[v-1] == 2 {
 			res = append(res, v)
-			break
 		}
 	}
-
-	fmt.Println(ar)
 
 	for i, v := range ar {
 		if v == 0 {
