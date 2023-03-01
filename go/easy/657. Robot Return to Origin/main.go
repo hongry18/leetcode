@@ -9,6 +9,9 @@ func main() {
 }
 
 func judgeCircle(moves string) bool {
+	if len(moves)%2 != 0 {
+		return false
+	}
 	var ar = [4]int{}
 
 	for _, r := range moves {
