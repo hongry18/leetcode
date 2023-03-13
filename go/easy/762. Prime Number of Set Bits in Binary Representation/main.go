@@ -10,6 +10,7 @@ func main() {
 	fmt.Println(oneCount(10))
 
 }
+
 func countPrimeSetBits(left int, right int) int {
 	var cnt int
 	prime := map[int]bool{
