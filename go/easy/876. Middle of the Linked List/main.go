@@ -19,3 +19,19 @@ func middleNode(head *ListNode) *ListNode {
 
 	return head
 }
+
+func optimizeMiddleNode(head *ListNode) *ListNode {
+	fast, slow := head, head
+
+	for fast != nil {
+		fast = fast.Next
+		if fast == nil {
+			break
+		}
+
+		fast = fast.Next
+		slow = slow.Next
+	}
+
+	return slow
+}
