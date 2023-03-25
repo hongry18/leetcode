@@ -8,9 +8,13 @@ func main() {
 func transpose(matrix [][]int) [][]int {
 	var res = make([][]int, len(matrix[0]))
 
+	for i := 0; i < len(res); i++ {
+		res[i] = make([]int, len(matrix))
+	}
+
 	for i := range res {
 		for j := range matrix {
-			res[i] = append(res[i], matrix[j][i])
+			res[i][j] = matrix[j][i]
 		}
 	}
 	return res
