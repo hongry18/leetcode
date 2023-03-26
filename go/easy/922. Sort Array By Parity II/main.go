@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func main() {
 	sortArrayByParityII([]int{4, 7, 5, 2})
 	sortArrayByParityII([]int{4, 2, 5, 7})
@@ -20,6 +18,5 @@ func sortArrayByParityII(nums []int) []int {
 			even += 2
 		}
 	}
-	fmt.Println(nums)
 	return nums
 }
