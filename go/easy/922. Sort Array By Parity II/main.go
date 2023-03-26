@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 	sortArrayByParityII([]int{4, 7, 5, 2})
 	sortArrayByParityII([]int{4, 2, 5, 7})
@@ -10,16 +12,14 @@ func main() {
 
 func sortArrayByParityII(nums []int) []int {
 	even, odd := 0, 1
-	res := make([]int, len(nums))
-	for _, num := range nums {
-		if num&1 == 0 {
-			res[even] = num
-			even += 2
-		} else {
-			res[odd] = num
+	for even < len(nums) && odd < len(nums) {
+		if nums[even]&1 == 1 {
+			nums[even], nums[odd] = nums[odd], nums[even]
 			odd += 2
-
+		} else {
+			even += 2
 		}
 	}
-	return res
+	fmt.Println(nums)
+	return nums
 }
