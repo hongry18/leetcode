@@ -1,19 +1,11 @@
 package main
 
-import (
-	"math"
-)
-
 func longestCommonPrefix(strs []string) string {
-	if len(strs) == 1 {
-		return strs[0]
-	}
-	min := math.MaxInt
+	min := 200
 
-	for i := range strs {
-		size := len(strs[i])
-		if size < min {
-			min = size
+	for _, s := range strs {
+		if len(s) < min {
+			min = len(s)
 		}
 	}
 
@@ -22,20 +14,12 @@ func longestCommonPrefix(strs []string) string {
 	}
 
 	for i := 0; i < min; i++ {
-		var tmp byte
-		for j := range strs {
-			if j == 0 {
-				tmp = strs[j][i]
-				continue
+		for j := 1; j < len(strs); j++ {
+			if strs[0][i] != strs[j][i] {
+				return strs[0][:i]
 			}
-
-			if tmp != strs[j][i] {
-				return strs[0][0:i]
-			}
-
-			tmp = strs[j][i]
 		}
 	}
 
-	return strs[0][0:min]
+	return strs[0][:min]
 }
