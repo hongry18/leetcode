@@ -9,28 +9,26 @@ func main() {
 }
 
 func distanceBetweenBusStops(distance []int, start int, destination int) int {
-	var f, b int
+	var f, b, i, j, l int = 0, 0, start, destination, len(distance)
 
-	for i := start; i != destination; i++ {
+	for i != destination {
 		f += distance[i]
-		if i == len(distance)-1 {
-			i = -1
+		i++
+		if i == l {
+			i = 0
 		}
 	}
 
-	for i := destination; i != start; i++ {
-		b += distance[i]
-		if i == len(distance)-1 {
-			i = -1
+	for j != start {
+		b += distance[j]
+		j++
+		if j == l {
+			j = 0
 		}
 	}
 
-	return min(f, b)
-}
-
-func min(a, b int) int {
-	if a > b {
+	if f > b {
 		return b
 	}
-	return a
+	return f
 }
