@@ -6,7 +6,7 @@ func main() {
 	dijkstra(10, 10, []int{2, 3}, []int{7, 8})
 }
 
-type Pos struct {
+type Node struct {
 	x, y, cost int
 }
 
@@ -18,7 +18,7 @@ func dijkstra(m, n int, start, end []int) {
 
 	ar[end[0]][end[1]] = 1
 
-	q := []Pos{{x: start[0], y: start[1]}}
+	q := []Node{{x: start[0], y: start[1]}}
 
 	for len(q) != 0 {
 
