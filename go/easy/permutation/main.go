@@ -6,9 +6,9 @@ func main() {
 	a := []int{1, 2, 3, 4, 5}
 	fmt.Println("#### permu")
 	permu(a, 0, 5, 2)
-	visit := make([]bool, len(a))
+	// visit := make([]bool, len(a))
 	fmt.Println("#### combi")
-	comb(a, visit, 0, 5, 2)
+	// comb(a, visit, 0, 5, 4)
 }
 
 func permu(ar []int, d, n, r int) {
