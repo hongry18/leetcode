@@ -38,3 +38,5 @@ Temporary Items
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+go/test/jnpmedi
